@@ -15,6 +15,7 @@
 
 // Properties
 <$foreach Attribute noninheritedAttributes do$><$if Attribute.hasDefinedAttributeType$>@property (nonatomic, retain) <$Attribute.objectAttributeType$> *<$Attribute.name$>;
+@property (nonatomic, retain) <$Attribute.objectAttributeType$> *primitive<$Attribute.name.initialCapitalString$>;
 <$if Attribute.hasScalarAttributeType$>@property (nonatomic, assign) <$Attribute.scalarAttributeType$> <$Attribute.name$>Value;
 <$endif$><$endif$><$endforeach do$>
 

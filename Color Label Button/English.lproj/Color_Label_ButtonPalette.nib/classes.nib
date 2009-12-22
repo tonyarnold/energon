@@ -1,0 +1,18 @@
+{
+    IBClasses = (
+        {
+            ACTIONS = {doAction = id; }; 
+            CLASS = ColorLabelButton; 
+            LANGUAGE = ObjC; 
+            SUPERCLASS = NSControl; 
+        }, 
+        {
+            CLASS = ColorLabelPalette; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {colorLabelButton = TAUIColorLabelButton; }; 
+            SUPERCLASS = IBPalette; 
+        }, 
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }
+    ); 
+    IBVersion = 1; 
+}

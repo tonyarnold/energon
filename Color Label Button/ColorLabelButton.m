@@ -69,6 +69,7 @@
 
 - (void) doAction: (id) sender {
   [self setSelectedColorLabel: [[sender selectedCell] color]];
+  [self sendAction:[self action] to:[self target]];
 }
 
 - (void) dealloc {
@@ -234,6 +235,89 @@
 	[self resetTrackingRects]; 
 }
 
+- (void)setTarget:(id)anObject {
+	target = anObject;
+}
+
+- (id)target {
+	return target;
+}
+
+- (void)setAction:(SEL)aSelector {
+	action = aSelector;
+}
+
+- (SEL)action {
+	return action;
+}
+
+- (int)numberForColor: (NSColor *)color {
+//	NSLog(@"numberForColor: %x   %@   %@", self, color, [self colorLabels]);
+	NSArray *cols = [self colorLabels];
+	if ([color isEqual: [cols objectAtIndex: 0]]) {
+		return LABEL_NONE;
+	} else if  ([color isEqual: [cols objectAtIndex: 1]]) {
+		return LABEL_RED;
+	} else if  ([color isEqual: [cols objectAtIndex: 2]]) {
+		return LABEL_ORANGE;
+	} else if  ([color isEqual: [cols objectAtIndex: 3]]) {
+		return LABEL_YELLOW;
+	} else if  ([color isEqual: [cols objectAtIndex: 4]]) {
+		return LABEL_GREEN;
+	} else if  ([color isEqual: [cols objectAtIndex: 5]]) {
+		return LABEL_BLUE;
+	} else if  ([color isEqual: [cols objectAtIndex: 6]]) {
+		return LABEL_MAGENTA;
+	} else if  ([color isEqual: [cols objectAtIndex: 7]]) {
+		return LABEL_GRAY;
+	}
+	return LABEL_NONE;
+}
+
+- (NSColor *)colorForNumber: (int)number {
+	NSArray *cols = [self colorLabels];
+	switch (number) {
+		case LABEL_NONE:
+			return [cols objectAtIndex: 0];
+		case LABEL_RED:
+			return [cols objectAtIndex: 1];
+		case LABEL_ORANGE:
+			return [cols objectAtIndex: 2];
+		case LABEL_YELLOW:
+			return [cols objectAtIndex: 3];
+		case LABEL_GREEN:
+			return [cols objectAtIndex: 4];
+		case LABEL_BLUE:
+			return [cols objectAtIndex: 5];
+		case LABEL_MAGENTA:
+			return [cols objectAtIndex: 6];
+		case LABEL_GRAY:
+			return [cols objectAtIndex: 7];
+		}
+	return nil;
+}
+
+
+- (void) setSelectedColorNumber: (int)number {	
+//	NSLog(@"XXXXXXXXXXXXXXXX setObjectValue %x old:%d new:%d", self, [self selectedColorNumber], number);
+	[self setSelectedColorLabel:[self colorForNumber:number]];
+}
+
+- (int) selectedColorNumber {
+//	NSLog(@"selectedColorNumber: %x %@", self, [self selectedColorLabel]);
+	return [self numberForColor:[self selectedColorLabel]];
+}
+
+- (id)objectValue {
+//NSLog(@"XXXXXXXXXXXXXXXX objectValue %x %d", self, [self selectedColorNumber]);
+	return [NSNumber numberWithInt:[self selectedColorNumber]];
+}
+
+- (void)setObjectValue:(id)object {
+//	NSLog(@"XXXXXXXXXXXXXXXX setObjectValue %x old:%d new:%d tp:%@", self, [self selectedColorNumber], [object intValue], [[object class] description]);
+	[self setSelectedColorNumber: [object intValue]];
+}
+
 @end
 
 #pragma mark -
@@ -292,8 +376,8 @@
 	ColorLabelButtonCell*	cell		= nil; 
 		
 	while (cell = [cellIter nextObject]) {
-		int row; 
-		int col; 
+		NSInteger row; 
+		NSInteger col; 
     
 		[mColorLabels getRow: &row column: &col ofCell: cell]; 
     

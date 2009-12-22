@@ -8,12 +8,22 @@
 
 #import <Cocoa/Cocoa.h>
 #import "ColorLabelButtonCell.h"
+#define LABEL_NONE 0
+#define LABEL_RED 6
+#define LABEL_ORANGE 7
+#define LABEL_YELLOW 5
+#define LABEL_GREEN 2
+#define LABEL_BLUE 4
+#define LABEL_MAGENTA 3
+#define LABEL_GRAY 1
 
 @interface ColorLabelButton : NSControl {
   NSMatrix*       mColorLabels;
 	NSMutableArray*	mTrackingRects;
 	BOOL            mDisplaysClearButton;
   NSColor*        mColorLabelColor;
+  id target;
+  SEL action;
 }
 
 #pragma mark -
@@ -42,5 +52,15 @@
 #pragma mark -
 - (void) setDisplaysClearButton: (BOOL) flag; 
 - (BOOL) displaysClearButton; 
+
+- (void)setTarget:(id)anObject;
+- (void)setAction:(SEL)aSelector;
+- (SEL)action;
+- (int)numberForColor: (NSColor *)color;
+- (NSColor *)colorForNumber: (int)number;
+- (void) setSelectedColorNumber: (int)number;
+- (int) selectedColorNumber;
+- (id)objectValue;
+- (void)setObjectValue:(id)object;
 
 @end

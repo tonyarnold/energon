@@ -1,0 +1,49 @@
+// DO NOT EDIT. This file is machine-generated and constantly overwritten.
+// Make changes to <$managedObjectClassName$>.h instead.
+
+#import <CoreData/CoreData.h>
+<$if hasCustomSuperentity$>#import "<$customSuperentity$>.h"<$endif$>
+
+<$foreach Relationship noninheritedRelationships do$>@class <$Relationship.destinationEntity.managedObjectClassName$>;
+<$endforeach do$>
+@interface <$managedObjectClassName$>ID : NSManagedObjectID {}
+@end
+
+@interface _<$managedObjectClassName$> : <$customSuperentity$> {}
++ (id)insertInManagedObjectContext:(NSManagedObjectContext*)moc_;
+- (<$managedObjectClassName$>ID*)objectID;
+
+// Properties
+<$foreach Attribute noninheritedAttributes do$><$if Attribute.hasDefinedAttributeType$>@property (nonatomic, retain) <$Attribute.objectAttributeType$> *<$Attribute.name$>;
+@property (nonatomic, retain) <$Attribute.objectAttributeType$> *primitive<$Attribute.name.initialCapitalString$>;
+<$if Attribute.hasScalarAttributeType$>@property (nonatomic, assign) <$Attribute.scalarAttributeType$> <$Attribute.name$>Value;
+<$endif$><$endif$><$endforeach do$>
+
+// Accessors
+<$foreach Attribute noninheritedAttributes do$><$if Attribute.hasDefinedAttributeType$><$if Attribute.hasScalarAttributeType$>- (<$Attribute.scalarAttributeType$>)<$Attribute.name$>Value;
+- (void)set<$Attribute.name.initialCapitalString$>Value:(<$Attribute.scalarAttributeType$>)value_;
+<$endif$><$endif$><$endforeach do$>
+
+// Relationships
+<$foreach Relationship noninheritedRelationships do$><$if Relationship.isToMany$>@property (nonatomic, retain) NSSet* <$Relationship.name$>;
+
+- (void)add<$Relationship.name.initialCapitalString$>:(NSSet*)value_;
+- (void)remove<$Relationship.name.initialCapitalString$>:(NSSet*)value_;
+- (void)add<$Relationship.name.initialCapitalString$>Object:(<$Relationship.destinationEntity.managedObjectClassName$>*)value_;
+- (void)remove<$Relationship.name.initialCapitalString$>Object:(<$Relationship.destinationEntity.managedObjectClassName$>*)value_;
+- (NSMutableSet*)<$Relationship.name$>Set;
+<$else$>@property (nonatomic, retain) <$Relationship.destinationEntity.managedObjectClassName$>* <$Relationship.name$>;
+<$endif$><$endforeach do$>
+
+// Fetch requests
+<$foreach FetchRequest prettyFetchRequests do$><$if FetchRequest.singleResult$>+ (id)fetch<$FetchRequest.name.initialCapitalString$>:(NSManagedObjectContext*)moc_<$foreach Binding FetchRequest.bindings do2$><$Binding.name$>:(<$Binding.type$>)<$Binding.name$>_<$endforeach do2$>;
++ (id)fetch<$FetchRequest.name.initialCapitalString$>:(NSManagedObjectContext*)moc_<$foreach Binding FetchRequest.bindings do2$><$Binding.name$>:(<$Binding.type$>)<$Binding.name$>_<$endforeach do2$> error:(NSError**)error_;
+<$else$>+ (NSArray*)fetch<$FetchRequest.name.initialCapitalString$>:(NSManagedObjectContext*)moc_<$foreach Binding FetchRequest.bindings do2$><$Binding.name$>:(<$Binding.type$>)<$Binding.name$>_<$endforeach do2$>;
++ (NSArray*)fetch<$FetchRequest.name.initialCapitalString$>:(NSManagedObjectContext*)moc_<$foreach Binding FetchRequest.bindings do2$><$Binding.name$>:(<$Binding.type$>)<$Binding.name$>_<$endforeach do2$> error:(NSError**)error_;
+<$endif$><$endforeach do$>
+
+// Validators
+<$foreach Attribute noninheritedAttributes do$><$if Attribute.hasDefinedAttributeType$>//- (BOOL)validate<$Attribute.name.initialCapitalString$>:(id*)value_ error:(NSError**)error_;
+<$endif$><$endforeach do$><$foreach Relationship noninheritedRelationships do$><$if Relationship.isToMany$><$else$>//- (BOOL)validate<$Relationship.name.initialCapitalString$>:(id*)value_ error:(NSError**)error_;
+<$endif$><$endforeach do$>
+@end

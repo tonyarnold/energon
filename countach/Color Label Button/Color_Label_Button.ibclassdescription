@@ -1,7 +1,0 @@
-{
-	Color_Label_Button = {
-		SuperClass = NSView;
-		Attributes = {
-		};
-	};
-}

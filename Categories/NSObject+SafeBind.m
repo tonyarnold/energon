@@ -12,7 +12,7 @@
 
 @implementation NSObject (SafeBind)
 
-- (void)safelyBindToObject:(id)sourceObject withKey:(NSString *)key options:(NSDictionary *)options {
+- (void)cb_safelyBindToObject:(id)sourceObject withKey:(NSString *)key options:(NSDictionary *)options {
 	if ((sourceObject == nil) || (key == nil)) {
 		return;
 	}

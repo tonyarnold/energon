@@ -11,6 +11,6 @@
 
 @interface NSArray (CBAdditions)
 
-- (id)firstObject;
+- (id)cb_firstObject;
 
 @end

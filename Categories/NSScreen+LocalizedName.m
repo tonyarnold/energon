@@ -17,8 +17,8 @@ static void KeyArrayCallback(const void *key, const void *value, void *context) 
 	CFArrayAppendValue(context, key);
 }
 
-@dynamic localizedDisplayName;
-- (NSString *)localizedDisplayName {
+@dynamic cb_localizedDisplayName;
+- (NSString *)cb_localizedDisplayName {
 	NSDictionary     *screenDictionary = [self deviceDescription];
 	NSNumber         *screenID         = [screenDictionary objectForKey:@"NSScreenNumber"];
 	CGDirectDisplayID aID              = [screenID unsignedIntValue];

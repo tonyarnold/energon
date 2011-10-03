@@ -11,11 +11,11 @@
 
 @implementation NSWindow (CenterOnScreen)
 
-- (void)centerWindowOnScreen {
-    [self centerWindowOnScreen:[self screen]];
+- (void)cb_centerWindowOnScreen {
+    [self cb_centerWindowOnScreen:[self screen]];
 }
 
-- (void)centerWindowOnScreen:(NSScreen *)screen {
+- (void)cb_centerWindowOnScreen:(NSScreen *)screen {
     if (screen == nil) {
         screen = [self screen];
     }

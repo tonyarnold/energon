@@ -11,7 +11,7 @@
 
 @implementation NSArray (CBAdditions)
 
-- (id)firstObject {
+- (id)cb_firstObject {
     return [self count] > 0 ? [self objectAtIndex:0] : nil;
 }
 

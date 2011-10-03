@@ -13,6 +13,6 @@
 @interface NSObject (SafeBind)
 
 /* Binds a an object to a source object with a single key. If the target object has a binding for the key, it is removed first. */
-- (void)safelyBindToObject:(id)sourceObject withKey:(NSString *)key options:(NSDictionary *)options;
+- (void)cb_safelyBindToObject:(id)sourceObject withKey:(NSString *)key options:(NSDictionary *)options;
 
 @end

@@ -16,19 +16,18 @@ extern NSString *const kShowDockIconUserDefaultsKey;
 
 @interface NSApplication (CBAdditions)
 
-+ (id)infoValueForKey:(NSString *)key;
-- (BOOL)showsDockIcon;
-- (void)setShowsDockIcon:(BOOL)flag;
-- (void)relaunch;
-+ (BOOL)systemIsLeopard;
-+ (BOOL)systemIsLeopardOrHigher;
-+ (BOOL)systemIsSnowLeopard;
-+ (BOOL)systemIsSnowLeopardOrHigher;
-+ (BOOL)systemIsLion;
-- (NSString *)applicationCopyrightInformation;
-- (NSString *)applicationName;
-- (NSString *)applicationShortVersionString;
-- (NSString *)applicationVersion;
-- (NSString *)applicationIdentifier;
++ (id)cb_infoValueForKey:(NSString *)key;
+- (BOOL)cb_showsDockIcon;
+- (void)cb_setShowsDockIcon:(BOOL)flag;
++ (BOOL)cb_systemIsLeopard;
++ (BOOL)cb_systemIsLeopardOrHigher;
++ (BOOL)cb_systemIsSnowLeopard;
++ (BOOL)cb_systemIsSnowLeopardOrHigher;
++ (BOOL)cb_systemIsLion;
+- (NSString *)cb_applicationCopyrightInformation;
+- (NSString *)cb_applicationName;
+- (NSString *)cb_applicationShortVersionString;
+- (NSString *)cb_applicationVersion;
+- (NSString *)cb_applicationIdentifier;
 
 @end

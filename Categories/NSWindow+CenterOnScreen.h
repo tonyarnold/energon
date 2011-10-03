@@ -11,7 +11,7 @@
 
 @interface NSWindow (CenterOnScreen)
 
-- (void)centerWindowOnScreen;
-- (void)centerWindowOnScreen:(NSScreen *)screen;
+- (void)cb_centerWindowOnScreen;
+- (void)cb_centerWindowOnScreen:(NSScreen *)screen;
 
 @end

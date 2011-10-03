@@ -12,6 +12,6 @@
 
 @interface NSScreen (LocalizedName)
 
-@property (readonly) NSString *localizedDisplayName;
+@property (readonly) NSString *cb_localizedDisplayName;
 
 @end

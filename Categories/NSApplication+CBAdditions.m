@@ -13,7 +13,7 @@ NSString *const kShowDockIconUserDefaultsKey = @"ShowDockIcon";
 
 @implementation NSApplication (CBAdditions)
 
-+ (id)infoValueForKey:(NSString *)key {
++ (id)cb_infoValueForKey:(NSString *)key {
     if ([[[NSBundle mainBundle] localizedInfoDictionary] objectForKey:key]) {
         return [[[NSBundle mainBundle] localizedInfoDictionary] objectForKey:key];
     }
@@ -21,11 +21,11 @@ NSString *const kShowDockIconUserDefaultsKey = @"ShowDockIcon";
     return [[[NSBundle mainBundle] infoDictionary] objectForKey:key];
 }
 
-- (BOOL)showsDockIcon {
+- (BOOL)cb_showsDockIcon {
     return [[NSUserDefaults standardUserDefaults] boolForKey:kShowDockIconUserDefaultsKey];
 }
 
-- (void)setShowsDockIcon:(BOOL)flag {
+- (void)cb_setShowsDockIcon:(BOOL)flag {
     // this should be called from the application delegate's applicationDidFinishLaunching method or from some controller object's awakeFromNib method neat dockless hack using Carbon from <a href="http://codesorcery.net/2008/02/06/feature-requests-versus-the-right-way-to-do-it" title="http://codesorcery.net/2008/02/06/feature-requests-versus-the-right-way-to-do-it">http://codesorcery.net/2008/02/06/feature-requests-versus-the-right-way-...</a>
     if (flag) {
         ProcessSerialNumber psn = { 0, kCurrentProcess };
@@ -44,30 +44,23 @@ NSString *const kShowDockIconUserDefaultsKey = @"ShowDockIcon";
     }
 }
 
-- (void)relaunch {
-    NSString *executablePath = [[NSBundle mainBundle] pathForResource:@"RelaunchTool" ofType:@""];
-
-    [NSTask launchedTaskWithLaunchPath:executablePath arguments:[NSArray arrayWithObjects:[[NSBundle mainBundle] bundlePath], [NSString stringWithFormat:@"%d", [[NSProcessInfo processInfo] processIdentifier]], nil]];
-    [NSApp terminate:self];
-}
-
-+ (BOOL)systemIsLeopard {
++ (BOOL)cb_systemIsLeopard {
     return (floor(NSAppKitVersionNumber) <= NSAppKitVersionNumber10_5);
 }
 
-+ (BOOL)systemIsLeopardOrHigher {
++ (BOOL)cb_systemIsLeopardOrHigher {
     return floor(NSAppKitVersionNumber) >= NSAppKitVersionNumber10_5;
 }
 
-+ (BOOL)systemIsSnowLeopard {
++ (BOOL)cb_systemIsSnowLeopard {
     return (floor(NSAppKitVersionNumber) <= NSAppKitVersionNumber10_6);
 }
 
-+ (BOOL)systemIsSnowLeopardOrHigher {
++ (BOOL)cb_systemIsSnowLeopardOrHigher {
     return floor(NSAppKitVersionNumber) >= NSAppKitVersionNumber10_6;
 }
 
-+ (BOOL)systemIsLion {
++ (BOOL)cb_systemIsLion {
     return floor(NSAppKitVersionNumber) > NSAppKitVersionNumber10_6;
 }
 
@@ -75,19 +68,19 @@ NSString *const kShowDockIconUserDefaultsKey = @"ShowDockIcon";
     return [NSApplication infoValueForKey:@"NSHumanReadableCopyright"];
 }
 
-- (NSString *)applicationName {
+- (NSString *)cb_applicationName {
     return [NSApplication infoValueForKey:@"CFBundleExecutable"];
 }
 
-- (NSString *)applicationShortVersionString {
+- (NSString *)cb_applicationShortVersionString {
     return [NSApplication infoValueForKey:@"CFBundleShortVersionString"];
 }
 
-- (NSString *)applicationVersion {
+- (NSString *)cb_applicationVersion {
     return [NSApplication infoValueForKey:@"CFBundleVersion"];
 }
 
-- (NSString *)applicationIdentifier {
+- (NSString *)cb_applicationIdentifier {
     return [NSApplication infoValueForKey:@"CFBundleIdentifier"];
 }
 
